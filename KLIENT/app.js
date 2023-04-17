@@ -1,3 +1,7 @@
+
+const log = document.getElementById("login")
+const password = document.getElementById("haslo")
+
 async function loginn(){
     const formlogin = document.getElementById("login").value
     const formpass = document.getElementById("haslo").value
@@ -16,4 +20,9 @@ function adminPage(){
    if(login.upr!="admin"){
     window.location.href = "login.html"
    }
+}
+function wyloguj(){
+    localStorage.clear()
+    log.value = ""
+    password.value = ""
 }
