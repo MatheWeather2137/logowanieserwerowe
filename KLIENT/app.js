@@ -1,24 +1,19 @@
-const login = "admin"
-const pass = "admin"
+async function loginn(){
+    const formlogin = document.getElementById("login").value
+    const formpass = document.getElementById("haslo").value
 
-//logowanie
-function loginn(){
-    const formLogin = document.getElementById("login").value
-    const formPass = document.getElementById("haslo").value
+    const data = await fetch(`http://localhost:3001/login/${formlogin}/${formpass}`)
+    const json = await data.json()
 
-    if(formLogin==login && formPass==pass){
-        alert("zalogowano")
-        localStorage.setItem("czy_zalogowany", "proste_ze_tak")
-    }
-    else{
-        alert("nie zalogowano")
-        localStorage.setItem("czy_zalogowany","niestety_nie")
-    }
+    console.log(json)
+
+    localStorage.setItem("login", JSON.stringify(json))
+
 }
-//przekierowanie
-function admin(){
-    const czy_zalogowany = localStorage.getItem("czy_zalogowany")
-    if(czy_zalogowany!="true"){
-        window.location.href = "login.html"   
-    }
+function adminPage(){
+   const login = JSON.parse(localStorage.getItem("login"))
+
+   if(login.upr!="admin"){
+    window.location.href = "login.html"
+   }
 }
