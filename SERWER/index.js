@@ -1,3 +1,5 @@
+
+//przypisanie stałych
 const express = require("express")
 const cors = require("cors")
 const mysql = require("mysql")
@@ -7,6 +9,7 @@ const port = 3001
 const app = express()
 app.use(cors())
 
+//połączenie z bazą
 var conn = mysql.createConnection({
     host:"localhost",
     user:"root",
@@ -17,15 +20,16 @@ conn.connect((err)=>{
     if(err) console.log(err)
     else console.log("połączono z bazą")
 })
-
+//endpoint test
 app.get("/test", (req, res)=>{
     res.send({"status": "ok"})
 })
-
+//endpoint user i pass
 app.get("/login/:user/:pass", (req,res)=>{
     const user = req.params.user
     const pass = req.params.pass
 
+    //sprawdzanie poprawności loginu i hasła
     //console.log(`user: ${user}, pass: ${pass}`)
     const sql = `SELECT * FROM users WHERE login = "${user}"`
     conn.query(sql,(err,results,fields)=>{
