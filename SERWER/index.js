@@ -20,10 +20,6 @@ conn.connect((err)=>{
     if(err) console.log(err)
     else console.log("połączono z bazą")
 })
-//endpoint test
-app.get("/test", (req, res)=>{
-    res.send({"status": "ok"})
-})
 //endpoint user i pass
 app.get("/login/:user/:pass", (req,res)=>{
     const user = req.params.user
